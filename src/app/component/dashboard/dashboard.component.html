@@ -1,3 +1,69 @@
-<p>
-  dashboard works!
-</p>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand text-white" routerLink="/dashboard">Dashboard</a>
+    <div class="justify-content-end">
+        <button class="btn my-2" (click)="logout()">Logout</button>
+    </div>
+</nav>
+
+<main role="main" class="container" style="margin-top: 90px;">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Card Title
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Card Title
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <p>User List</p>
+                </div>
+                <div class="col-12">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="background-color: rgba(0, 0, 0, 0.03);" scope="col">#</th>
+                            <th style="background-color: rgba(0, 0, 0, 0.03);" scope="col">First name</th>
+                            <th style="background-color: rgba(0, 0, 0, 0.03);" scope="col">Last name</th>
+                            <th style="background-color: rgba(0, 0, 0, 0.03);" scope="col">User name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let user of state.tableUsers; let i = index">
+                            <th scope="col">{{ i + 1 }}</th>
+                            <td scope="col">{{ user.firstname }}</td>
+                            <td scope="col">{{ user.lastname }}</td>
+                            <td scope="col">{{ user.username }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
