@@ -10,8 +10,8 @@ import { AuthenticateService } from '../../service/authenticate.service';
 export class SignUpComponent {
 
     state = {
-        email: 'admin@mail.com',
-        password: 'admin123',
+        email: '', // 'admin@mail.com',
+        password: '', // 'admin123',
     };
 
     constructor(private router: Router,
@@ -25,7 +25,7 @@ export class SignUpComponent {
             .subscribe(
                 res => {
                     localStorage.setItem('token', res.token);
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate([ 'dashboard' ]);
                 }
             );
     }

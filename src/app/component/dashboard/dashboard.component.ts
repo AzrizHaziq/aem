@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Chart from 'chart.js/dist/Chart.js';
 import { DashboardService } from '../../service/dashboard.service';
 
 @Component({
@@ -25,27 +26,42 @@ export class DashboardComponent implements OnInit {
             .subscribe(res => {
                 const { chartBar, chartDonut, tableUsers } = res;
                 this.state = { chartBar, chartDonut, tableUsers };
-            });
 
-        // const ctx = document.getElementById('myChart');
-        // const myChart = new Chart(ctx, chart);
+                this.setupBarChart();
+                this.setupPierChart();
+            });
+    }
+
+    setupPierChart() {
+        const { chartDonut } = this.state;
+        const ctx = document.getElementById('pie-chart').getContext('2d');
+
+        const pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: chartDonut.map(item => item.country),
+                datasets: [ {
+                    data: chartDonut.map(item => item.litres)
+                } ]
+            }
+        });
+    }
+
+    setupBarChart() {
+        const { chartBar } = this.state;
+
+        const ctx = document.getElementById('bar-chart').getContext('2d');
+
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartBar.map(item => item.country),
+                datasets: [ {
+                    label: 'Those are colors',
+                    data: chartBar.map(item => item.visits)
+                } ]
+            },
+        });
     }
 }
 
-const chart = {
-    type: 'pie',
-    data: {
-        datasets: [
-            {
-                data: [ 10, 20, 30 ]
-            }
-        ],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ]
-    }
-};
